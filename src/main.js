@@ -1,33 +1,35 @@
-const { app, BrowserWindow } = require('electron');  
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const url = require('url');
 const path = require('path');
+// Watch and reload for changes
+require('electron-reloader')(module);
 
 function createWindow() {
-  // Create the browser window.
-  const win = new BrowserWindow({
-    minWidth: 800,
-    minHeight: 600,
-    // icon: path.join(__dirname, 'assets/icon.png'),
-    webPreferences: {
-      nodeIntegration: true,
-      /* preload: path.join(__dirname, 'preload.js') */
-    },
-  });
+    // Create the browser window.
+    const win = new BrowserWindow({
+        minWidth: 800,
+        minHeight: 600,
+        // icon: path.join(__dirname, 'assets/icon.png'),
+        webPreferences: {
+            nodeIntegration: true,
+            preload: path.join(__dirname, 'js/preload.js'),
+        },
+    });
 
-  //load the index.html from a url
-  win.loadURL(url.format({
-    pathname: path.join(
-      __dirname,
-      'views/index.html'),
-    protocol: 'file:',
-    slashes: true
-  }));
+    //load the index.html from a url
+    win.loadURL(url.format({
+        pathname: path.join(
+            __dirname,
+            'views/index.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
 
-  // Open the DevTools.
-  // win.webContents.openDevTools();
+    // Open the DevTools.
+    // win.webContents.openDevTools();
 
-  // open maximized
-  win.maximize()
+    // open maximized
+    win.maximize()
 }
 
 // This method will be called when Electron has finished
@@ -39,16 +41,28 @@ app.whenReady().then(createWindow)
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
 })
 
 app.on('activate', () => {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
+    // On macOS it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
 
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow()
-  }
+    if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow()
+    }
+});
+
+// Open File Dialog
+ipcMain.handle('dialog:open', async (_, args) => {
+    const result = await dialog.showOpenDialog({
+        filters: [{
+            name: 'ASIDE Files',
+            extensions: ['ts', 'js']
+        }],
+        properties: ['openFile']
+    });
+    return result;
 });
