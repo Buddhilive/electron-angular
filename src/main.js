@@ -63,28 +63,21 @@ ipcMain.handle('dialog:open', async (_, args) => {
             name: 'ASIDE Files',
             extensions: ['txt']
         }],
-        properties: ['openFile']
+        properties: [args.openType]
     });
+    console.log(args);
     return result;
 });
 
 // Save File Dialog
-ipcMain.handle('dialog:save', async (eventData, content) => {
+ipcMain.handle('dialog:save', async (_) => {
     const result = await dialog.showSaveDialog({
-      filters: [{
-        name: 'ASIDE Files',
-        extensions: ['txt']
-      }],
-      properties: ['createDirectory']
+        filters: [{
+            name: 'ASIDE Files',
+            extensions: ['txt']
+        }],
+        properties: ['createDirectory']
     });
-  
-    if(!result.canceled) {
-      try {
-        fs.writeFileSync(result.filePath, content);
-      } catch (err) {
-        console.log({body: err});
-      }
-    }
-  
+
     return result;
-  });
+});
