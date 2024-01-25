@@ -66,3 +66,24 @@ ipcMain.handle('dialog:open', async (_, args) => {
     });
     return result;
 });
+
+// Save File Dialog
+ipcMain.handle('dialog:save', async (eventData, content) => {
+    const result = await dialog.showSaveDialog({
+      filters: [{
+        name: 'Solias Files',
+        extensions: ['txt']
+      }],
+      properties: ['createDirectory']
+    });
+  
+    if(!result.canceled) {
+      try {
+        fs.writeFileSync(result.filePath, content);
+      } catch (err) {
+        console.log({body: err});
+      }
+    }
+  
+    return result;
+  });
