@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const url = require('url');
 const path = require('path');
+const fs = require('fs');
 // Watch and reload for changes
 require('electron-reloader')(module);
 
@@ -26,7 +27,7 @@ function createWindow() {
     }));
 
     // Open the DevTools.
-    // win.webContents.openDevTools();
+    win.webContents.openDevTools();
 
     // open maximized
     win.maximize()
@@ -60,7 +61,7 @@ ipcMain.handle('dialog:open', async (_, args) => {
     const result = await dialog.showOpenDialog({
         filters: [{
             name: 'ASIDE Files',
-            extensions: ['ts', 'js']
+            extensions: ['txt']
         }],
         properties: ['openFile']
     });
@@ -71,7 +72,7 @@ ipcMain.handle('dialog:open', async (_, args) => {
 ipcMain.handle('dialog:save', async (eventData, content) => {
     const result = await dialog.showSaveDialog({
       filters: [{
-        name: 'Solias Files',
+        name: 'ASIDE Files',
         extensions: ['txt']
       }],
       properties: ['createDirectory']

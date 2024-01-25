@@ -12,7 +12,7 @@ window.onload = () => {
     });
 
     controlElements.saveFileBtn.addEventListener('click', async () => {
-        const fileInfo = await ipcRenderer.invoke('dialog:save');
+        const fileInfo = await ipcRenderer.invoke('dialog:save', 'content');
         console.log(fileInfo);
     });
 }
