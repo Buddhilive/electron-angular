@@ -81,3 +81,14 @@ ipcMain.handle('dialog:save', async (_) => {
 
     return result;
 });
+
+function notificationShow({...args}) {
+    const { Notification } = require('electron');
+  
+    const notify = new Notification({
+      title: args['title'],
+      subtitle: args['subtitle'],
+      body: args['body'],
+    });
+    notify.show();
+  }
