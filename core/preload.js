@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
-contextBridge.exposeInMainWorld('soliasCoreService', {
+contextBridge.exposeInMainWorld('ngElectronCoreService', {
     welcome: (name) => ipcRenderer.invoke('welcome', name),
     openDialog: async () => ipcRenderer.invoke('dialog:open'),
     saveDialog: async (fileData) => ipcRenderer.invoke('dialog:save', fileData),

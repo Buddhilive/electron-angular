@@ -1,5 +1,5 @@
 {
-  "name": "solias-idea",
+  "name": "electron-angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng serve",

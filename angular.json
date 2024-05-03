@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "solias-idea": {
+    "electron-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "solias-idea:build:production"
+              "buildTarget": "electron-angular:build:production"
             },
             "development": {
-              "buildTarget": "solias-idea:build:development"
+              "buildTarget": "electron-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "solias-idea:build"
+            "buildTarget": "electron-angular:build"
           }
         },
         "test": {

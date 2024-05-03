@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   }
 
   checkVersion(): void {
-    (window as any).soliasCoreService.cmd({cmd: 'node', param: ['-v']}).then((data: string) => {
+    (window as any).ngElectronCoreService.cmd({cmd: 'node', param: ['-v']}).then((data: string) => {
       this.versionString = data.replace(/[^\d.-]/g, '');
       const semver = this.versionString.split('.');
       this.currentVersion = parseFloat(`${semver[0]}.${semver[1]}`);

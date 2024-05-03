@@ -24,7 +24,7 @@ function createWindow() {
     protocol: 'file:',
     slashes: true
   }));
-  // win.loadFile(`../../../dist/apps/solias-ui/index.html`);
+  // win.loadFile(`../../../dist/apps/electron-angular-ui/index.html`);
 
   // Open the DevTools.
   // win.webContents.openDevTools();
@@ -56,7 +56,7 @@ app.on('activate', () => {
   }
 })
 
-// Solias Desktop core functions
+// ngElectron Desktop core functions
 
 // Sample function
 ipcMain.handle('welcome', (event, name) => {
@@ -68,7 +68,7 @@ ipcMain.handle('welcome', (event, name) => {
 ipcMain.handle('dialog:open', async (_, args) => {
   const result = await dialog.showOpenDialog({
     filters: [{
-      name: 'Solias Files',
+      name: 'ngElectron Files',
       extensions: ['ts', 'js']
     }],
     properties: ['openFile']
@@ -80,7 +80,7 @@ ipcMain.handle('dialog:open', async (_, args) => {
 ipcMain.handle('dialog:save', async (eventData, content) => {
   const result = await dialog.showSaveDialog({
     filters: [{
-      name: 'Solias Files',
+      name: 'ngElectron Files',
       extensions: ['txt']
     }],
     properties: ['createDirectory']
