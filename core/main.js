@@ -15,7 +15,6 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js')
     },
   });
-
   //load the index.html from a url
   win.loadURL(url.format({
     pathname: path.join(
@@ -25,10 +24,8 @@ function createWindow() {
     slashes: true
   }));
   // win.loadFile(`../../../dist/apps/electron-angular-ui/index.html`);
-
   // Open the DevTools.
   // win.webContents.openDevTools();
-
   // open maximized
   win.maximize()
 }
@@ -50,7 +47,6 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
   }
