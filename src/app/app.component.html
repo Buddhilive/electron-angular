@@ -1,0 +1,15 @@
+<div class="solias-welcome">
+  @if (currentVersion == 0) {
+  <div class="solias-welcome__msg">Checking for Node version...</div>
+  } @else if (currentVersion < version) {
+  <div class="solias-welcome__msg">
+    Your current node version is: {{ versionString }} <br />
+    Required Node version is: {{ version }} <br />
+    Please upgrade your Node version.
+  </div>
+  <button class="solias-welcome__btn" (click)="checkVersion()">
+    Check Again
+  </button>
+  }
+</div>
+<router-outlet></router-outlet>

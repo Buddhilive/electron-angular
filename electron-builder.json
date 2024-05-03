@@ -1,0 +1,18 @@
+{
+    "productName": "berkeliumlabs",
+    "directories": {
+      "output": "dist/build"
+    },
+    "files": [
+
+    ],
+    "win": {
+      "target": ["nsis"]
+    },
+    "mac": {
+      "target": ["dmg"]
+    },
+    "linux": {
+      "target": ["AppImage"]
+    }
+  }
