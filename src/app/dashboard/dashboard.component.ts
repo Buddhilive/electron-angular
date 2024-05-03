@@ -8,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
+  openDialog() {
+    (window as any).ngElectronCoreService.openDialog();
+  }
 
+  saveDialog() {
+    const data = `Sample data generated at ${Date.now()}`;
+
+    (window as any).ngElectronCoreService.saveDialog(data);
+  }
 }
